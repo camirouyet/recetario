@@ -11,13 +11,13 @@
 
         <preference name="phonegap-version" value="3.7.0" />
 
-        <name>Urban</name>
+        <name>Recetario</name>
 
         <description>
-        	Aplicacion de seguridad e informacion vecinal . 
+        	Aplicacion carga de recetas y listado de compras. 
         </description>
 
-        <author href="http://www.urban-app.com.ar" 
+        <author href="http://www.camilarouyet.web44.net" 
 			email="camirouyet@gmail.com">
         	Rouyet - Escuela Da Vinci
         </author>
