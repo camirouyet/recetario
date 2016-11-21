@@ -1,0 +1,96 @@
+<div ui-content-for="title">
+  <span><span ng-if="id">Editar Receta</span><span ng-if="!id">Nueva Receta</span></span>
+</div>
+
+<div class="scrollable">
+	<div class="scrollable-content">
+
+		<div class="section section">
+			<form name="myForm" novalidate ng-submit="onSubmit(receta)" id ="formulario">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label for="name">Titulo:</label>
+								<div class="input-group">
+									<input name="name" id="name" type="text" required ng-model="receta.name" class="form-control" >
+									<span class="input-group-addon" ng-hide="myForm.name.$pristine" ng-click="searchImg(receta.name)" >
+										<i class="fa fa-search" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div id="searching text-center" class="well well-sm" ng-show="showPanel">
+									<span ng-hide="imageFind">Buscando imagenes...</span>
+									<img  ng-repeat="image in imagesSearched" src="{{image.thumbnailUrl}}" class="media-object" ng-click="onSelectImg(image.contentUrl)">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+						<div class="form-group">
+							<label for="imagePath">Image Url:</label>
+							<input name="imagePath" id="imagePath" type="text" required ng-model="receta.imagePath" class="form-control">
+						</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+						<div class="img">
+							<img src="{{receta.imagePath}}">
+						</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+						<div class="form-group">
+							<label for="description">Descripción:</label>
+							<textarea name="description" id="description" type="text" rows="6" required ng-model="receta.description" class="form-control"></textarea>
+						</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+						<div class="form-group">
+							<label>Ingredientes:</label>
+							<ul class="list-group">
+								<div class="row" ng-repeat="ingredient in receta.ingredients">
+										<div class="col-xs-5">
+											<input type="text" required ng-model="ingredient.name" class="form-control"> 
+										</div>
+										<div class="col-xs-5">
+											<input type="number" required string-to-number ng-model="ingredient.amount" class="form-control">
+										</div>
+										<div class="col-xs-2">
+											<button class="btn btn-danger" ng-click="onRemoveItem($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
+										</div>
+									<br><br>
+								</div>
+							</ul>
+						</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group row">
+							<div class="col-xs-5"><input type="text" class="form-control" ng-model="add.name"></div>
+							<div class="col-xs-5"><input type="number" class="form-control" ng-model="add.amount"></div>
+							<div class="col-xs-2">
+								<button type="button" class="btn btn-primary"  ng-disabled="add.name == undefined || add.amount == undefined" ng-click="onAddItem(add.name, add.amount)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+							</div>
+							</div>
+						</div>
+					</div>
+					<br><br>
+					<div class="row">
+						<div class="col-xs-12">
+							<input type="submit" value="Guardar" id="guardar" class="btn btn-primary btn-lg btn-block" ng-disabled="!myForm.$valid"/>
+							<div onclick="window.history.back()" class="btn btn-default btn-lg btn-block" > Cancelar</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+ 
+	</div>
+ </div>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Recipe Book!</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+       
+    <link rel="stylesheet" href="dist/css/mobile-angular-ui-base.css" />
+    <link rel="stylesheet" href="dist/css/estilos.css" />
+	  <link rel="stylesheet" href="dist/css/font-awesome.min.css">
+
+    <script src="dist/js/angular.min.js"></script>
+    <script src="dist/js/angular-route.min.js"></script>
+    <script src="dist/js/mobile-angular-ui.min.js"></script>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	
+  	<script src="dist/js/recetasModule.js"></script>
+
+    <script src="dist/js/services/recetasService.js"></script>
+    <script src="dist/js/services/listService.js"></script>
+
+    <script src="dist/js/directives/stringToNumberDirective.js"></script>
+    <script src="dist/js/directives/listAddDirective.js"></script>
+
+    <script src="dist/js/controllers/MainController.js"></script>
+    <script src="dist/js/controllers/RecetasController.js"></script>
+    <script src="dist/js/controllers/NewRecetaController.js"></script>
+    <script src="dist/js/controllers/ListController.js"></script>
+  </head>
+
+  <body 
+    ng-app="Recetas" 
+    ng-controller="MainController"
+    ui-prevent-touchmove-defaults
+    >
+
+    <div ng-include="'includes/sidebar.html'" 
+         ui-track-as-search-param='true'
+         class="sidebar sidebar-left">
+	|  </div>
+
+	<div class="app" 
+         ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
+         ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
+ 
+      <div class="navbar navbar-app navbar-absolute-top">
+        <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+          Recipe Book
+        </div>
+        <div class="btn-group pull-left">
+          <div ui-toggle="uiSidebarLeft" class="btn sideb ar-toggle" ng-show="!modal">
+            <i class="fa fa-bars fa-2x"></i>
+          </div>
+          <div onclick="window.history.back()" class="btn sideb ar-toggle" ng-show="modal">
+            <i class="fa fa-arrow-left fa-2x"></i>
+          </div>
+        </div>
+      </div>
+
+    <div class="app-body" ng-class="{loading: loading}">
+       <div ng-show="loading" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+		 
+        </div>
+        <div class="app-content">
+          <ng-view></ng-view>
+        </div>
+		
+	</div>
+		<div class="navbar-absolute-bottom cero">
+      <div class="alert alert-warning navbar-absolute-bottom" ng-if="respuesta">
+        <p class="h4 text-center">{{respuesta}}</p>
+      </div>
+			<div class="btn-group pull-right" ui-yield-to="navbarAction" style="z-index:10000">
+				<div ui-toggle="uiSidebarRight" class="btn cero" ng-show="!modal">
+				<a href="#/new"><i class="fa fa-plus-circle fa-4x pull-right"></i></a>
+				</div>
+			</div>
+        </div>
+    </div>
+
+    <div ui-yield-to="modals"></div>
+    
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form name="listAdd" ng-submit="onSubmit()" >
+            <div class="row form-group">
+                <div class="col-xs-9">
+                    <label for="item-name">Name</label>
+                    <input type="text" 
+                        id="item-name" 
+                        required 
+                        class="form-control"
+                        ng-model="selectedItem.name"
+                        name="name">
+                </div>
+
+                <div class="col-xs-3">
+                    <label for="item-amount">Amount</label>
+                    <input type="number" 
+                        id="item-amount" 
+                        required 
+                        string-to-number
+                        class="form-control"
+                        ng-model="selectedItem.amount"
+                        name="amount">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-success" type="submit" ng-if="isAdd"  ng-disabled="listAdd.$invalid">Agregar</button>
+                    <button class="btn btn-success" type="submit" ng-if="!isAdd" ng-disabled="listAdd.$invalid">Guardar</button>
+                    <button class="btn btn-danger"  type="button" ng-if="!isAdd" ng-click="onDelete()">Eliminar ingrediente</button>
+                    <button class="btn btn-primary" type="button" ng-if="!isAdd" ng-click="onClear()">Limpiar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

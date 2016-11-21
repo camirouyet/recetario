@@ -1,0 +1,27 @@
+<div class="scrollable">  
+  <div class="scrollable-content">
+		<div class="section section a">
+			<div class="section section-break" ng-if="firstTime">
+				<div>
+					<h2 class="h3">Esta aplicacion lo ayudara a organizar los ingredientes necesarios para realizar sus recetas con exito!</h2>
+					<ul  class="list-unstyled">
+					<li class="alert alert-warning"><i class="fa fa-check-circle-o fa-2x"></i><b>Facil</b></li>
+					<li class="alert alert-warning"><i class="fa fa-check-circle-o fa-2x"></i><b>Util</b></li>
+					<li class="alert alert-warning"><i class="fa fa-check-circle-o fa-2x"></i><b>Agil</b></li>
+					</ul>
+				</div>
+			</div>	
+			<div class="section section-break"  ng-if="!firstTime">
+				<h2 class="h3">Tu ultima receta agregada</h2>
+				<a href="#/{{recetas.length-1}}" class="list-group"  ng-if="recetas[recetas.length-1]">	
+					<div class="list-group-item" ng-if="respuesta !== 'Sin conexión'"><img src="{{recetas[recetas.length-1].imagePath}}" class="img-responsive"></div>
+					<div class="list-group-item">
+						<h4 class="list-group-item-heading">{{recetas[recetas.length-1].name}}</h4>
+						<p class="list-group-item-text">{{recetas[recetas.length-1].description}}</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+

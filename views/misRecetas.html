@@ -1,0 +1,17 @@
+<div ui-content-for="title">
+  <span>Recetas</span>
+</div>
+
+<div class="scrollable">
+	<div class="scrollable-content">
+			<div class="section"  ng-repeat="receta in recetas">
+				<a href="#/{{$index}}" class="list-group" >
+					<div class="list-group-item" ng-if="respuesta !== 'Sin conexión'"><img src="{{receta.imagePath}}" class="img-responsive"></div>
+					<div class="list-group-item">
+						<h4 class="list-group-item-heading">{{receta.name}}</h4>
+						<p class="list-group-item-text">{{receta.description}}</p>
+					</div>
+				</a>
+			</div>
+	</div>
+ </div>

@@ -1,0 +1,23 @@
+<div ui-content-for="title">
+  <span>Lista de compras</span>
+</div>
+
+<div class="scrollable">
+	<div class="scrollable-content">
+		<div class="section section">
+			<div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <list-add ng-model="selectedItem"></list-add>
+                        <hr>
+                        <ul class="list-group">
+                            <a class="list-group-item"
+                                ng-repeat="item in lista"
+                                ng-click="onSelectItem($index)">{{item.name}} ({{item.amount}})</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

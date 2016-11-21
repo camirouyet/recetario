@@ -1,0 +1,39 @@
+<div ui-content-for="title">
+  <span>{{selectedReceta.name}}</span>
+</div>
+
+<div class="scrollable">
+	<div class="scrollable-content">
+		<div class="section">
+            <div class="row" ng-if="respuesta != 'Sin conexión'">
+                <div class="col-xs-12">
+                    <img src="{{selectedReceta.imagePath}}" alt="" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>{{selectedReceta.name}}</h1>
+                </div>
+                <div class="col-xs-12">
+                    <button class="btn btn-success" ng-click="onAddToShoppingList()" ng-if="respuesta != 'Sin conexión'">Agregar a lista de compras</button>
+                    <a class="btn btn-primary" href="#/{{selectedReceta.id}}/edit" ng-if="respuesta != 'Sin conexión'">Editar</a>
+                    <button class="btn btn-danger" ng-click="onDelete()">Eliminar</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>{{selectedReceta.description}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="list-group">
+                        <li class="list-group-item"  ng-repeat="item in selectedReceta.ingredients">{{item.name}} ({{item.amount}})</li>
+                    </ul>
+                </div>
+            </div>
+
+	</div>
+ </div>
+ 
