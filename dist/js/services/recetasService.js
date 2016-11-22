@@ -38,9 +38,9 @@ app.service('recetasService', function() {
     this.setRecetas(data);
   }
 
-  this.deleteReceta = function(receta){
+  this.deleteReceta = function(index){
     var recetas = this.getRecetas();
-    recetas.splice(this.getRecetas().indexOf(receta), 1);
+    recetas.splice(index, 1);
     this.setRecetas(recetas);
   }
 

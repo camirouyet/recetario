@@ -18,7 +18,7 @@ app.controller("newRecetaController", function ($scope, $http, $rootScope, $rout
 
       if(recipe.hasOwnProperty('ingredients')){
         for(var i = 0; i < recipe.ingredients.length; i++){
-          recipeIngredients[i] = {name: recipe.ingredients[i].name, amount: recipe.ingredients[i].amount}
+          recipeIngredients[i] = {name: recipe.ingredients[i].name, cant: recipe.ingredients[i].cant}
         }
       }
     
@@ -38,7 +38,7 @@ app.controller("newRecetaController", function ($scope, $http, $rootScope, $rout
 		$scope.showPanel = true;
 		var params = {
 			q: value,
-			count: 3,
+			count:  3,
 			size: 'Medium'
 		};
 		
@@ -72,7 +72,7 @@ app.controller("newRecetaController", function ($scope, $http, $rootScope, $rout
 	
 		if(newReceta.hasOwnProperty('ingredients')){
 			for(var i = 0; i < newReceta.ingredients.length; i++){
-				newReceta.ingredients[i] = {name: newReceta.ingredients[i].name, amount: newReceta.ingredients[i].amount}
+				newReceta.ingredients[i] = {name: newReceta.ingredients[i].name, cant: newReceta.ingredients[i].cant}
 			}
 		}
 		
@@ -119,8 +119,8 @@ app.controller("newRecetaController", function ($scope, $http, $rootScope, $rout
 		$scope.receta['ingredients'].splice(index);
 	}
 
-	$scope.onAddItem = function(name, amount){
-		$scope.receta['ingredients'].push({amount: amount, name: name});
+	$scope.onAddItem = function(name, cant){
+		$scope.receta['ingredients'].push({cant: cant, name: name});
 		$scope.add = {};
 	}
 	

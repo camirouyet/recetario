@@ -29,13 +29,33 @@ app.directive('listAdd', ['listService', '$http', function(listService, $http) {
       scope.onDelete = function(){
           debugger
           listService.deleteItem(scope.selectedId);
+                
+          var config = {headers: {'Content-Type': 'application/json'}};
+          var body = JSON.stringify(listService.getList());
+        
+          $http.put("https://recipebook-d9365.firebaseio.com/list.json", body, config)
+          .success(function(respuesta){
+            listService.setListLocal(false);
+            $rootScope.respuesta = 'Eliminado exitosamente';
+               $timeout(function () {
+                $rootScope.respuesta = false;
+            }, 1000);
+          })
+          .error (function (error) {
+            console.log(error);
+            $rootScope.respuesta = 'Há ocurrido un error, vuelva a intentarlo más tarde';
+            $timeout(function () {
+              $rootScope.respuesta = "Sin conexión";
+            }, 1000);
+            
+          });
           scope.onClear();
       }
 
       scope.onClear = function(){
         scope.isAdd = true;
         scope.lista = listService.getList();
-        scope.selectedItem = {name: null, amount: null};
+        scope.selectedItem = {name: null, cant: null};
 		    scope.selectedId = null;
       }
 

@@ -1,6 +1,6 @@
 
 app.controller("ListController", function ($scope, $http, $rootScope, listService) {
-	$scope.selectedItem = {name: null, amount: null};
+	$scope.selectedItem = {name: null, cant: null};
     $scope.lista = listService.getList();
 			
 	$scope.onSelectItem = function(index){
@@ -8,7 +8,7 @@ app.controller("ListController", function ($scope, $http, $rootScope, listServic
 		$scope.selectedId = index;
 		$scope.selectedItem = {
 			name: $scope.lista[index].name, 
-			amount: $scope.lista[index].amount
+			cant: $scope.lista[index].cant
 		};
 	}
  }); 

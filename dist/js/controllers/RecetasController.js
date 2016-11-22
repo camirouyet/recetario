@@ -17,7 +17,7 @@ app.controller("RecetaController", function($scope, $rootScope, $routeParams, $h
 			for(var i = 0; i < $scope.selectedReceta.ingredients.length; i++){
 				recipeIngredients[i] = {
 					name: $scope.selectedReceta.ingredients[i].name, 
-					amount: $scope.selectedReceta.ingredients[i].amount
+					cant: $scope.selectedReceta.ingredients[i].cant
 				}
 			}
      	}
@@ -42,7 +42,10 @@ app.controller("RecetaController", function($scope, $rootScope, $routeParams, $h
 			
 			if(error){
 				console.log(error);
-				$rootScope.respuesta = 'Lo siento, ha ocurrido un error';
+				$rootScope.respuesta = 'Há ocurrido un error, vuelva a intentarlo más tarde';
+				$timeout(function () {
+					$rootScope.respuesta = false;
+				}, 1000);
 			}else{
 				$rootScope.respuesta = 'Guardado exitosamente';
 				$timeout(function () {
@@ -52,9 +55,31 @@ app.controller("RecetaController", function($scope, $rootScope, $routeParams, $h
 		});
 	}
 
-	$scope.onDelete = function(id){
-		recetasService.deleteRecipe(id);
-		$location.path() = '#/recipes';
+	$scope.onDelete = function(){
+		recetasService.deleteReceta($scope.selectedReceta.id);
+		
+		var config = {headers: {'Content-Type': 'application/json'}};
+		var body = JSON.stringify(recetasService.getRecetas());
+  
+		$http.put("https://recipebook-d9365.firebaseio.com/recipes.json", body, config)
+		.success(function(respuesta){
+			
+			recetasService.setRecetasLocal(false);
+			$rootScope.respuesta = 'Eliminado exitosamente';
+            $timeout(function () {
+					$rootScope.respuesta = false;
+           			 window.history.back();
+			}, 1000);
+
+		})
+		.error (function (error) {
+			console.log(error);
+			$rootScope.respuesta = 'Há ocurrido un error, vuelva a intentarlo más tarde';
+			$timeout(function () {
+				$rootScope.respuesta = "Sin conexión";
+			}, 1000);
+			
+		});
 	}
 
 	$scope.$on("$destroy", function() {
