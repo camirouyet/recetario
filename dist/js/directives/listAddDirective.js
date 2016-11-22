@@ -27,6 +27,7 @@ app.directive('listAdd', ['listService', '$http', function(listService, $http) {
       }
 
       scope.onDelete = function(){
+          debugger
           listService.deleteItem(scope.selectedId);
           scope.onClear();
       }

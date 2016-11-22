@@ -33,8 +33,10 @@ app.service('listService', function() {
     this.setList(data);
   }
 
-  this.deleteItem = function(List){
-    this.setList(this.getList().splice(this.getList().indexOf(List), 1));
+  this.deleteItem = function(index){
+    var lista = this.getList();
+    lista.splice(index, 1);
+    this.setList(lista);
   }
 
   this.editItem = function(index, newItem){

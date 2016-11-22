@@ -4,7 +4,7 @@ app.controller("MisRecetasController", function($scope, recetasService) {
 	$scope.recetas = recetasService.getRecetas();
 });
 
-app.controller("RecetaController", function($scope, $rootScope, $routeParams, recetasService, listService) {
+app.controller("RecetaController", function($scope, $rootScope, $routeParams, $http, $timeout, recetasService, listService) {
 	$rootScope.modal = true;
 
 	localStorage.setItem("firstTime", 'user');
@@ -34,7 +34,6 @@ app.controller("RecetaController", function($scope, $rootScope, $routeParams, re
 			$rootScope.respuesta = 'Guardado exitosamente';
             $timeout(function () {
 					$rootScope.respuesta = false;
-            		window.history.back();
 			}, 1000);
 
 		})
@@ -48,7 +47,6 @@ app.controller("RecetaController", function($scope, $rootScope, $routeParams, re
 				$rootScope.respuesta = 'Guardado exitosamente';
 				$timeout(function () {
 					$rootScope.respuesta = "Sin conexión";
-            		window.history.back();
 				}, 1000);
 			}
 		});

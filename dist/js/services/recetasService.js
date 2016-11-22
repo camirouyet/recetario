@@ -39,7 +39,9 @@ app.service('recetasService', function() {
   }
 
   this.deleteReceta = function(receta){
-    this.setRecetas(this.getRecetas().splice(this.getRecetas().indexOf(receta), 1));
+    var recetas = this.getRecetas();
+    recetas.splice(this.getRecetas().indexOf(receta), 1);
+    this.setRecetas(recetas);
   }
 
   this.editReceta = function(recetaId, newReceta){

@@ -1,5 +1,5 @@
 
-app.controller("MainController", function($scope,$http, $rootScope, recetasService) {
+app.controller("MainController", function($scope,$http, $rootScope, recetasService, listService) {
 	$scope.firstTime = (localStorage.getItem("firstTime"))? false : true; 
 
 	$scope.setRecetas = function () {
@@ -19,6 +19,22 @@ app.controller("MainController", function($scope,$http, $rootScope, recetasServi
 			}
 		});
     }
+
+	$scope.setList = function () {
+		$http.get("https://recipebook-d9365.firebaseio.com/list.json")
+		.success(function (data) {
+			listService.setList(data);
+			listService.addList(listService.getListLocal());
+			$scope.lista = listService.getList();
+			$rootScope.respuesta = false;
+		}).error (function (data) {
+			var datos_local = listService.getList();
+			if (datos_local.length != 0){
+				$scope.lista = datos_local;
+			}
+		});
+    }
 	
 	$scope.setRecetas();
+	$scope.setList();
 });
