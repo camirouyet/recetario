@@ -6,12 +6,13 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
        
     <link rel="stylesheet" href="dist/css/mobile-angular-ui-base.css" />
-    <link rel="stylesheet" href="dist/css/estilos.css" />
 	  <link rel="stylesheet" href="dist/css/font-awesome.min.css">
+    <link rel="stylesheet" href="dist/css/estilos.css" />
 
     <script src="dist/js/angular.min.js"></script>
     <script src="dist/js/angular-route.min.js"></script>
     <script src="dist/js/mobile-angular-ui.min.js"></script>
+    <script src="dist/js/mobile-angular-ui.gestures.js"></script>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	
@@ -41,8 +42,8 @@
 	|  </div>
 
 	<div class="app" 
-         ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
-         ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
+         ui-swipe-right='!modal? Ui.turnOn("uiSidebarLeft") : window.history.back()'
+         ui-swipe-left='!modal? Ui.turnOff("uiSidebarLeft") : null'>
  
       <div class="navbar navbar-app navbar-absolute-top">
         <div class="navbar-brand navbar-brand-center" ui-yield-to="title">

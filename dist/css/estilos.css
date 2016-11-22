@@ -2,6 +2,7 @@ a,strong{color:#dd6d3a}
 strong{font-size:1.2em}
 a:active{color:#d08965}
 .fa,.btn-default{color:#89b745}
+.fa-bars{line-height: 46px;}
 .navbar{color:#89b745}
 .active{background:#dd6d3a !important; border:none !important;}
 

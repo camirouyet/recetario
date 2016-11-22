@@ -1,6 +1,7 @@
 var app = angular.module('Recetas', [
   'ngRoute',
-  'mobile-angular-ui'
+  'mobile-angular-ui',
+  'mobile-angular-ui.gestures'
   ]);
 
 app.config(function($routeProvider) {
